@@ -27,9 +27,6 @@ uses
   def,
   history;
 
-var
-  __hashCut: LongInt;
-
 const
   z = 0;
 
@@ -91,7 +88,6 @@ const
   up: array[0..3] of TColor = (black, black, white, white);
 
 var
-  pRndScore: array[TSquare] of integer;
   pos: array[TSquare] of TIndex;
   pieces: array[TSquare] of TPiece;
   color: array[TSquare] of TColor;
@@ -102,8 +98,6 @@ var
   game_list: array[0..Max_Game + Max_Ply] of TMove;
   game_cnt, game_max: integer;
   tree: array[0..Max_Ply * 40] of TMove;
-  capTree: array[0..1000] of TIndex;
-{ sortVal:array[0..Max_Ply*40] of LongInt;}
   treeCnt, capTreeCnt: array[0..Max_Ply] of integer;
   mtl, stMainScore: array[white..black] of integer;
   pCnt: array[white..black, pawn..king] of integer;
@@ -425,8 +419,6 @@ var
       else iColor := white;
   end;
   procedure Link(from, _to: integer; newPiece: TPiece);
-  var
-    j: integer;
   begin
     if top > 0 then {captures}
       if not findCap then
@@ -609,15 +601,6 @@ begin
   CapTreeCnt[ply + 1] := capCnt;
 end;
 
-{
-function GetTickCount64:LongInt;
-var
- timer:LongInt absolute $40:$6C;
-begin
-  GetTickCount64 := timer * 1000  div  18;
-end;
-}
-
 procedure TimeReset;
 begin
   startTime := GetTickCount64;
@@ -644,7 +627,7 @@ procedure PrepareEvaluate;
 var
   c: TColor;
   i: integer;
-  j, add, sqVal: integer;
+  j: integer;
 begin
 
   glHashPawns := (pCnt[white, pawn] + pCnt[black, pawn]) > 0;
@@ -796,7 +779,7 @@ end;
 var
   find_cap, threat: array[0..MAX_PLy] of boolean;
 var
-  do_reduction, iid_enable: boolean;
+  iid_enable: boolean;
 var
   find_mv_cnt: integer;
 
@@ -817,16 +800,11 @@ label
   end;
 
 var
-  j, k, tmp, cnt, margin, oldAlpha: integer;
+  j, tmp, cnt, oldAlpha: integer;
   mv: PMove;
-
-  moveFrom, moveTo: integer;
-  tempMove: TMove;
   lgCnt, nextDepth, m_cnt: integer;
-
   c0: TColor;
   tmp_mv_i, old_alpha: integer;
-  save_do_reduction: boolean;
 
 begin
 
@@ -1012,21 +990,13 @@ label
   end;
 
 var
-  j, k, tmp, cnt, margin, oldAlpha: integer;
+  j, tmp, cnt, oldAlpha: integer;
   mv: PMove;
-
-  moveFrom, moveTo: integer;
-  tempMove: TMove;
   lgCnt, nextDepth, m_cnt: integer;
-
   c0: TColor;
-  tmp_mv_i, foo_mv_i: integer;
-  save_do_reduction: boolean;
+  tmp_mv_i: integer;
   fixed_depth: integer;
-  peeck_depth: integer;
 { start_score:integer;}
-  t: integer;
-  old_score, nd: integer;
   old_alpha, hash_mv: integer;
 begin
 
@@ -1306,7 +1276,6 @@ begin
    {010}
   root_side := side;
   glDepth := 0;
-  __hashCut := 0;
   searchDepth := 0;
   searchScore := 0;
   TimeReset;
@@ -1779,7 +1748,6 @@ var
   findCap: boolean;
   c: char;
   f: file;
-  save_game_cnt, save_game_max: integer;
   capIndex: LongInt;
   mv: TMove;
 
