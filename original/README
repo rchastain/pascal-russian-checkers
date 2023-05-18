@@ -1,0 +1,52 @@
+
+
+                  ************************
+                  *** Russian Checkers ***
+                  ************************
+                  03.2016   evgeniy-korniloff@yandex.ru
+
+
+
+
+                   **** ABOUT ****
+
+
+
+
+ system:         >= DOS 6.22
+ CPU:            >= Pentium 4
+
+
+
+
+
+                    ****  RULES ******
+
+
+In 'Russian checkers' checkers(
+Men) go ahead, beat in all directions.
+Checkers is becoming a king, which came to the last cell.
+When a man beats, then passed through a field transformation, it becomes a king.
+King hit on any number of fields and can rotate. Of all the ways vozvozhnyh choose the shortest.
+At the end of the game, three king can catch one if it is not on the big diagonal.
+The goal of the game - get a king, or to lock all the pieces the enemy.
+
+
+
+                    **** KEYS ****
+
+Cntrl-W   new game white
+Esc       Exit
+
+//----------------------------------
+Cntrl-Z   undo move
+Cntrl-X   redo move
+Cntrl-S   save game
+CNtrl-D   load game
+Cntrl-A   Go (move machin)
+
+
+
+
+
+Enjoy!
