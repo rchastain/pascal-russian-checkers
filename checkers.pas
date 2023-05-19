@@ -1611,19 +1611,13 @@ const
   msg1 = 'Russian Checkers';
   menu: array[0..1] of string =
   (
-
-    'Cntrl-W   new ',
-    'Esc       exit'
-
-{
-   'Cntrl-A   move (go)',
-
-   'Cntrl-Z   undo',
-   'Cntrl-X   redo',
-
-   'Cntrl-S   save ',
-   'Cntrl-D   load',
-   }
+    'Ctrl+W   New ',
+    'Esc      Exit'
+   {'Ctrl+A   Move'
+    'Ctrl+Z   Undo'
+    'Ctrl+X   Redo'
+    'Ctrl+S   Save '
+    'Ctrl+D   Load'}
     );
 
   liters: array[0..7] of char = ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h');
@@ -1790,7 +1784,7 @@ begin
       else if maxTime > 30 then maxTime := 30;
     end;
 
-    randomize;
+    Randomize;
     InitNewGame;
 
     ShowPos;
